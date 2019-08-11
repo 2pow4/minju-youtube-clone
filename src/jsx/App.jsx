@@ -72,7 +72,7 @@ class App extends React.Component{
             <div>
                 <div>
                     <span onClick={this.handleStop} style={{visibility : this.state.playerEnable ? 'visible': 'hidden'}}> 뒤로가기</span>
-                    <a href="#"><div id="banner"> Youtube Search & Play </div></a>                   
+                    <div onClick={()=>{window.location.reload()}}id="banner"> Youtube Search & Play </div>                  
                 </div>
                 <Search handleSearch={this.handleSearch}/>
                 {showView}    
