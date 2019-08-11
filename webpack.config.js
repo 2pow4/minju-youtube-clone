@@ -4,7 +4,8 @@ module.exports = {
   entry: "./src/jsx/index.jsx",
   output: {
     filename: "bundle.js",
-    path: path.resolve(`${__dirname}/scripts`)
+    path: path.resolve(`${__dirname}/scripts`),
+    publicPath: '/scripts'
   },
   mode: "none",
   module: {
@@ -15,6 +16,9 @@ module.exports = {
         use: ['babel-loader']
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   }
 
 }
