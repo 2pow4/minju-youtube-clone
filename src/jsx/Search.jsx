@@ -1,30 +1,13 @@
 import React from "react";
 
-class Search extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            value : ''
-        }
-    }
-
-    handleChange = (event)=>{
-        this.setState({value: event.target.value})
-    } 
-
-    handleClick = (event)=>{
-        event.preventDefault()
-        this.props.handleSearch(this.state.value)
-    }
-    render(){
+const Search = (props) => { 
         return (
             <div>
-                <input name='keyword' value={this.state.value} onChange={this.handleChange}>
+                <input name='keyword' value={props.value} onChange={props.handleChange}>
                 </input>
-                <button className='button' onClick={this.handleClick}>Search</button>
+                <button className='button' onClick={props.handleSearch}>Search</button>
             </div>
         )
     }
-}
 
 export default Search;
