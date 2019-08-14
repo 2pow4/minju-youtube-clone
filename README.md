@@ -1,2 +1,9 @@
-# minju-youtube-clone
-React toy project - youtube clone coding 
+# Minju-Youtube-Clone
+React Toy Project - Youtube Clone Coding  
+Simple Youtube Search & Play tools!
+
+> installation
+
+you can clone my repository and 
+
+
