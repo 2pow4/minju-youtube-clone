@@ -8411,28 +8411,29 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   constructor(props) {
     super(props);
 
-    _defineProperty(this, "searchByKeyWord", () => {
-      console.log("did updated");
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('https://www.googleapis.com/youtube/v3/search', {
-        params: {
-          key: config.YOUTUBE_API_KEY,
-          part: 'snippet',
-          type: 'video',
-          q: this.state.keyword
-        }
-      }).then(response => {
-        console.log(response.data.items);
-        this.setState({
-          results: response.data.items
-        });
+    _defineProperty(this, "handleChange", event => {
+      this.setState({
+        keyword: event.target.value
       });
     });
 
-    _defineProperty(this, "handleSearch", value => {
-      console.log("change keyword to " + value);
-      this.setState({
-        keyword: value
-      }, this.searchByKeyWord);
+    _defineProperty(this, "handleSearch", event => {
+      if (this.state.keyword === "") return alert("검색어를 입력하세요!");else {
+        console.log("did updated");
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('https://www.googleapis.com/youtube/v3/search', {
+          params: {
+            key: config.YOUTUBE_API_KEY,
+            part: 'snippet',
+            type: 'video',
+            q: this.state.keyword
+          }
+        }).then(response => {
+          console.log(response.data.items);
+          this.setState({
+            results: response.data.items
+          });
+        });
+      }
     });
 
     _defineProperty(this, "handlePlay", videoId => {
@@ -8485,12 +8486,15 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       style: {
         visibility: this.state.playerEnable ? 'visible' : 'hidden'
       }
-    }, " \uB4A4\uB85C\uAC00\uAE30"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "#"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, " \uB4A4\uB85C\uAC00\uAE30"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      onClick: () => {
+        window.location.reload();
+      },
       id: "banner"
-    }, " Youtube Search & Play "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      handleSearch: this.handleSearch
+    }, " Youtube Search & Play ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Search__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      handleSearch: this.handleSearch,
+      handleChange: this.handleChange,
+      keyword: this.state.keyword
     }), showView);
   }
 
@@ -10289,42 +10293,18 @@ module.exports = function spread(callback) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-
-class Search extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
-  constructor(props) {
-    super(props);
-
-    _defineProperty(this, "handleChange", event => {
-      this.setState({
-        value: event.target.value
-      });
-    });
-
-    _defineProperty(this, "handleClick", event => {
-      event.preventDefault();
-      this.props.handleSearch(this.state.value);
-    });
-
-    this.state = {
-      value: ''
-    };
-  }
-
-  render() {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      name: "keyword",
-      value: this.state.value,
-      onChange: this.handleChange
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "button",
-      onClick: this.handleClick
-    }, "Search"));
-  }
-
-}
+const Search = props => {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    name: "keyword",
+    value: props.value,
+    onChange: props.handleChange
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "button",
+    onClick: props.handleSearch
+  }, "Search"));
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (Search);
 

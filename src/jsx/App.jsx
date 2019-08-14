@@ -23,28 +23,32 @@ class App extends React.Component{
     //         this.searchByKeyWord()
     //     }
     // }
+    
+    handleChange = (event)=>{
+        this.setState({keyword: event.target.value})
+    } 
 
-    searchByKeyWord = () => {
-        console.log("did updated")
-        axios.get('https://www.googleapis.com/youtube/v3/search',
-        {
-            params:{
-                key: config.YOUTUBE_API_KEY,
-                part: 'snippet',
-                type: 'video',
-                q: this.state.keyword
-            }
-        
-        }).then(
-            response => {
-                console.log(response.data.items)
-                this.setState({results: response.data.items})}
-        )
-    }
-
-    handleSearch = (value) => {
-        console.log("change keyword to " + value)
-        this.setState({keyword : value}, this.searchByKeyWord)
+    handleSearch = (event) => {
+        if(this.state.keyword === "")
+            return alert("검색어를 입력하세요!")
+            
+        else{
+            console.log("did updated")
+            axios.get('https://www.googleapis.com/youtube/v3/search',
+            {
+                params:{
+                    key: config.YOUTUBE_API_KEY,
+                    part: 'snippet',
+                    type: 'video',
+                    q: this.state.keyword
+                }
+            
+            }).then(
+                response => {
+                    console.log(response.data.items)
+                    this.setState({results: response.data.items})}
+            )
+        }    
     }
 
     handlePlay = (videoId) => {
@@ -72,9 +76,9 @@ class App extends React.Component{
             <div>
                 <div>
                     <span onClick={this.handleStop} style={{visibility : this.state.playerEnable ? 'visible': 'hidden'}}> 뒤로가기</span>
-                    <a href="#"><div id="banner"> Youtube Search & Play </div></a>                   
+                    <div onClick={()=>{window.location.reload()}}id="banner"> Youtube Search & Play </div>                  
                 </div>
-                <Search handleSearch={this.handleSearch}/>
+                <Search handleSearch={this.handleSearch} handleChange={this.handleChange} keyword={this.state.keyword}/>
                 {showView}    
             </div>
         )
