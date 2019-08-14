@@ -7,7 +7,7 @@ Video Search & Play Service with Youtube API
 - Play videos whatever you wanna watch
 
 > ## Try it!
-You can try service [here!]('https://2pow4.github.io/minju-youtube-clone/') 😍 
+You can try service [here!](https://2pow4.github.io/minju-youtube-clone/) 😍 
 > ## Installation
 
 After cloning the repository, you need to install dependency executing following command:
