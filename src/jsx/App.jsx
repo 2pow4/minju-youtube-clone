@@ -14,17 +14,8 @@ class App extends React.Component{
             playerEnable: false
         }
     }
-
-    // componentDidUpdate(PrevProps, PrevState){
-    //     if (PrevState.keyword === this.state.keyword){
-    //         return
-    //     }
-    //     else{
-    //         this.searchByKeyWord()
-    //     }
-    // }
-    
-    handleChange = (event)=>{
+  
+    handleChange = (event) =>{
         this.setState({keyword: event.target.value})
     } 
 
@@ -33,7 +24,6 @@ class App extends React.Component{
             return alert("검색어를 입력하세요!")
             
         else{
-            console.log("did updated")
             axios.get('https://www.googleapis.com/youtube/v3/search',
             {
                 params:{
