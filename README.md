@@ -35,6 +35,7 @@ you can run test using following command:
 
 > ## Tech Spec
 - `"react": "^16.9.0"`
+- `"redux": "^4.0.4"`
 - `"webpack": "^4.39.1"`
 - `"babel": "^7.5.5"`
 - `"enzyme": "^3.10.0"`
